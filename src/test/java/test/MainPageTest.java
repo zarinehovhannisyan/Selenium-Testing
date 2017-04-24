@@ -17,7 +17,7 @@ import page.OpenedEmail;
 import java.io.IOException;
 
 public class MainPageTest extends BaseSetup {
-    final static Logger logger = Logger.getLogger(MainPageTest.class);
+    private final static Logger logger = Logger.getLogger(MainPageTest.class);
 
     private WebDriver driver;
 
@@ -32,8 +32,12 @@ public class MainPageTest extends BaseSetup {
         return read.readExcel("src/test/resources/TestData.xls", "Sheet1");
     }
 
-
-    @Test(priority = 1)
+    /**
+     * This test go to https://yahoo.com/
+     * Check main page title
+     * Click to mail Link
+     */
+    @Test(priority = 0)
     public void testVerifyHomePage() {
         logger.info("Main page test...");
         MainPage mainPage = new MainPage(driver);
@@ -41,18 +45,26 @@ public class MainPageTest extends BaseSetup {
         mainPage.clickMailLink();
     }
 
-    @Test(priority = 2, dataProvider = "getExcelData")
+    /**
+     * Create Login Page object
+     * Check invalid email
+     * Check invalid password
+     * Login to application
+     */
+    @Test(priority = 1, dataProvider = "getExcelData")
     public void testVerifyUserLogin(String email, String password) {
-        // Creating instance of loginPage
+        // Create Login Page object
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         logger.info("Sign in page test...");
         Assert.assertTrue(loginPage.loginWithInValidEmail("09dsfsdfhhhh"), "Valid email.");
+        // go the next page
         loginPage.loginWithValidEmail(email);
         Assert.assertTrue(loginPage.loginWithInValidPassword("invalid"), "Valid password.");
+        //login to application
         loginPage.loginWithVailidPassword(password);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 2)
     public void testVerifyOpenedEmail() {
         // Creating instance of Opened Email Page
         OpenedEmail openedEmail = PageFactory.initElements(driver, OpenedEmail.class);

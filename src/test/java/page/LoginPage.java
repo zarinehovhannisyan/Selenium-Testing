@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
     // Created Logger instance  for logging
-    final static Logger logger = Logger.getLogger(LoginPage.class);
+    private final static Logger logger = Logger.getLogger(LoginPage.class);
     // WebDriver object
     private WebDriver driver;
     // WebDriverWait object
@@ -24,7 +24,9 @@ public class LoginPage {
         wait = new WebDriverWait(driver, 20);
     }
 
-    //Using FindBy for locating elements
+    /**
+     * Using FindBy annotation for locating elements
+     */
     @FindBy(id = "login-username")
     private WebElement email;
 
@@ -36,17 +38,20 @@ public class LoginPage {
 
     private WebElement password;
 
+    //Set email in textbox input
     private void typeEmail(String text) {
         email.clear();
         email.sendKeys(text);
     }
 
+    //Set password in password input
     private void typePassword(String text) {
         password.clear();
         password.sendKeys(text);
     }
 
-    public void clickSubmit() {
+    //Click on next button
+    private void clickSubmit() {
         next.click();
     }
 
@@ -76,8 +81,7 @@ public class LoginPage {
     /**
      * Get error message for invalid email or password
      */
-
-    public String getErrorMessage() {
+    private String getErrorMessage() {
         WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='mbr-login-error']")));
         logger.info("Get error message");
         return errorMsg.getText();

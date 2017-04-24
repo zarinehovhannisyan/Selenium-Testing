@@ -19,7 +19,8 @@ public class MainPage {
         return getPageTitle().contains("Yahoo");
     }
 
-    public String getPageTitle() {
+    //Get the title of Yahoo page
+    private String getPageTitle() {
         return driver.getTitle();
     }
 
