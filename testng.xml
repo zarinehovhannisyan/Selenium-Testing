@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Automationsuite" parallel="tests">
+
+    <parameter name="appURL" value="https://www.yahoo.com/"/>
+    <!--
+      It is a situation when we want to run multiple tests at the same time.
+      thread-count is a webdriver instances can run parallel in the 2 different browser.
+     -->
+    <test name="ChromeTest" thread-count="2">
+        <parameter name="browserType" value="1"/>
+        <classes>
+            <class name="test.MainPageTest"/>
+        </classes>
+    </test>
+    <test name="FirefoxTest" thread-count="2">
+        <parameter name="browserType" value="2"/>
+        <classes>
+            <class name="test.MainPageTest"/>
+        </classes>
+    </test>
+</suite>
