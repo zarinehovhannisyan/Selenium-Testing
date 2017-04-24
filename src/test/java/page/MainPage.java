@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 public class MainPage {
     private WebDriver driver;
 
-
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -19,7 +18,7 @@ public class MainPage {
         return getPageTitle().contains("Yahoo");
     }
 
-    //Get the title of Yahoo page
+    // Get the title of Yahoo page
     private String getPageTitle() {
         return driver.getTitle();
     }

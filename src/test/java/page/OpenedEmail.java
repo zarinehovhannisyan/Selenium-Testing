@@ -13,7 +13,6 @@ public class OpenedEmail {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private WebElement inbox;
-    //private WebElement emptyMessage;
     private WebElement compose;
 
     public OpenedEmail(WebDriver driver) {

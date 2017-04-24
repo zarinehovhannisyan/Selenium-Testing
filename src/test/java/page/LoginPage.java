@@ -38,13 +38,13 @@ public class LoginPage {
 
     private WebElement password;
 
-    //Set email in textbox input
+    // Set email in text input
     private void typeEmail(String text) {
         email.clear();
         email.sendKeys(text);
     }
 
-    //Set password in password input
+    // Set password in password input
     private void typePassword(String text) {
         password.clear();
         password.sendKeys(text);
